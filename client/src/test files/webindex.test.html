@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sharator WebView</title>
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+ 
+  <style>
+    body {
+      background-color: #333538;
+    }
+
+    #itemlist {
+      margin-left: 20vw;
+      margin-top: 30px;
+    }
+
+    #title {
+      text-decoration: underline;
+      color: whitesmoke;
+      font-size: 4vw;
+      margin-left: 30vw;
+    }
+
+    #download-btn {
+      margin-left: 10vw;
+      margin-bottom: 20px;
+      border-width: 3px;
+      border-radius: 7px;
+      border-style: groove;
+      border-color: darkgreen;
+      height: 45px;
+      width: 30vw;
+      background-color: whitesmoke;
+    }
+
+    .item {
+      width: 50vw;
+      margin-bottom: 15px;
+      border-style: groove;
+      border-radius: 4px;
+      border-width: 1px;
+      border-color: whitesmoke;
+      overflow-x: auto;
+    }
+
+    .link {
+      margin-left: 15px;
+    }
+
+    a:link,
+    a:visited {
+      color: whitesmoke;
+    }
+
+    #loader {
+      margin-top: 15%;
+      animation: spin 2s linear infinite;
+    }
+
+    @-webkit-keyframes spin {
+      0% {
+        -webkit-transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .animate-bottom {
+      position: relative;
+      -webkit-animation-name: animatebottom;
+      -webkit-animation-duration: 1s;
+      animation-name: animatebottom;
+      animation-duration: 1s
+    }
+
+    @-webkit-keyframes animatebottom {
+      from {
+        bottom: -100px;
+        opacity: 0
+      }
+      to {
+        bottom: 0px;
+        opacity: 1
+      }
+    }
+
+    @keyframes animatebottom {
+      from {
+        bottom: -100px;
+        opacity: 0
+      }
+      to {
+        bottom: 0;
+        opacity: 1
+      }
+    }
+  </style>
+ <script>
+    window.onload = function () {
+      var loader = document.getElementById("loader");
+      if (window.innerWidth < 1230) {
+        loader.style.marginLeft = "10%";
+      } else {
+        loader.style.marginLeft = "38%";
+      }
+      loader.style.display = "block";
+    }
+  </script>
+</head>
+
+<body>
+    <div>
+        <label id="title" style="display:none;">Sharator Webview</label>
+      </div>
+      <div id="root" style="display:none;" class="animate-bottom"></div>
+      <div>
+        <img id="loader" src="/img" alt="Loading..." width="256px" height="256px" style="display:none;">
+      </div>
+    
+      <script src="/js"></script>
+  <script type="text/babel">
+
+  class Container extends React.Component{
+    constructor(props){
+      super(props);
+      this.state = {
+        array: [],
+      };
+
+      this.handleClick = this.handleClick.bind(this);
+      this.onChangeHandler = this.onChangeHandler.bind(this);
+    }
+
+    componentWillMount(){
+      this.fetchData().then((data)=>{this.state={array: data}; 
+                                      this.setState(this.state); 
+                                      setTimeout(function() {
+                                        document.getElementById("loader").style.display = "none";
+                                        document.getElementById("root").style.display = "block"; 
+                                        document.getElementById("title").style.display="block"; 
+                                      }, 1000);
+                                    });
+    }
+
+    render(){
+      return(
+        <div>
+          {this.getTags()}
+
+          <button id="download-btn" onClick={this.handleClick}>Download Selected</button>
+        </div>
+      );
+    }
+
+    fetchData() {
+      return new Promise((resolve, reject)=>{
+          fetch("/files",{
+          method: 'GET',
+          headers: {
+            Accept: 'application/json'
+          }
+        }).then(response => {
+          if (response.ok) {
+            response.json().then(json => {
+              resolve(json);
+            });
+          }
+        });
+      });
+    }
+
+    getTags() {
+        let array = [];
+        for (var i = 0; i < this.state.array.length; i++) {
+          array.push(<div key={i} className="item"><a className="link" href={`/download/${this.state.array[i].name}`}>{this.state.array[i].name}</a>
+                <input className="checker" type="checkbox" onChange={this.onChangeHandler}></input>
+                      </div>)
+          }
+        return array
+    }
+
+    onChangeHandler(e){
+      e.target.value = e.target.checked;
+    }
+
+    handleClick(){
+      let array = {links: document.getElementsByClassName('link'), checkbox: document.getElementsByClassName('checker')};
+
+      for (var i = 0; i < array.checkbox.length; i++) {
+        if(array.checkbox[i].value == "true"){
+          window.open(array.links[i].href); 
+        }
+      }
+    }
+  }
+
+  ReactDOM.render(<Container/>, document.getElementById('root') );
+
+  </script>
+  </body>
+
+</html>

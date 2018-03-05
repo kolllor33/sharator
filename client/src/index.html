@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+  <title></title>
+  <style>
+    #label-div {
+      margin: 15px 0px 10px 10px;
+    }
+
+    #path-div {
+      margin-bottom: 10px;
+    }
+
+    body {
+      background-color: #333538;
+    }
+
+    label,
+    pre {
+      color: whitesmoke;
+      font-family: Georgia;
+      letter-spacing: 1px;
+    }
+
+    a:link,
+    a:visited {
+      color: whitesmoke;
+    }
+
+    #link {
+      margin-top: -20px;
+      width: 100px;
+    }
+
+    #copy {
+      margin-left: 74%;
+      margin-top: -25px;
+    }
+
+    #filelist-div {
+      margin-top: 5px;
+      max-height: 160px;
+      max-width: 500px;
+      overflow: auto;
+      border-style: groove;
+      border-radius: 4px;
+      border-width: 2px;
+      border-color: white;
+      background-color: #333538;
+      overflow-x: hidden;
+    }
+
+    .item {
+      margin-bottom: 10px;
+      border-style: groove;
+      border-radius: 4px;
+      border-width: 1px;
+      border-color: white;
+    }
+
+    .item label {
+      margin-left: 5px;
+      cursor: pointer;
+    }
+
+    #help {
+      margin-top: 10px;
+    }
+
+    #room {
+      margin-top: 5px;
+    }
+
+    .btn {
+      background: #2a941c;
+      background-image: linear-gradient(to bottom, #2a941c, #7bb82b);
+      border-radius: 25px;
+      border-color: #242527;
+      border-style: solid;
+      border-width: 2px;
+      font-family: Georgia;
+      color: #ffffff;
+      font-size: 15px;
+      margin-left: 2vw;
+      padding: 10px 20px 10px 20px;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: #30b81b;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="label-div">
+    <div id="path-div">
+      <label id="path">Pls selected a folder</label>
+      <br>
+    </div>
+    <div>
+      <div style="margin-bottom: 10px;">
+        <label id="url">Server hasn't started</label>
+        <a id="link" style="display: none" href="#"></a>
+      </div>
+      <pre id="room" style="display: none"></pre>
+    </div>
+    <br>
+  </div>
+  <button class="btn" id="selecter">Select folder</button>
+  <button class="btn" id="start">Start Sharing</button>
+  <div id="help">
+    <label>Click to hide a file for others: </label>
+  </div>
+  <div id="filelist-div">
+  </div>
+  <script>
+    require("./rendere.js")
+  </script>
+</body>
+
+</html>

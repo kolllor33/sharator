@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <title></title>
+    <style>
+        body {
+            background-color: #333538;
+        }
+
+        label {
+            color: whitesmoke;
+        }
+
+        #item-list-container {
+            margin-top: 15px;
+        }
+
+        #item-list {
+            margin-top: 10px;
+            max-height: 240px;
+            max-width: 500px;
+            overflow: auto;
+            border-style: groove;
+            border-radius: 4px;
+            border-width: 2px;
+            border-color: white;
+            background-color: #333538;
+            overflow-x: hidden;
+        }
+
+        .item {
+            margin-bottom: 10px;
+            border-style: groove;
+            border-radius: 4px;
+            border-width: 1px;
+            border-color: white;
+        }
+
+        .item label {
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        #overlay {
+            position: fixed;
+            display: none;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        #cancel-div {
+            position: absolute;
+            border-style: groove;
+            border-radius: 4px;
+            border-width: 1px;
+            border-color: #f5f5f5;
+            font-size: 4vh;
+            top: 5%;
+            left: 75%;
+        }
+
+        #cancel-div,
+        #overlay-cancel {
+            cursor: pointer;
+        }
+
+        #text-div {
+            position: absolute;
+            font-size: 10vh;
+            top: 50%;
+            left: 45%;
+        }
+
+        #filename-div {
+            position: absolute;
+            font-size: 6vh;
+            top: 65%;
+            left: 10%;
+        }
+
+        #image-div {
+            position: absolute;
+            top: 15%;
+            left: 41%;
+        }
+
+        #image {
+            width: 30vh;
+            height: 30vh;
+            animation: spin 2s linear infinite;
+        }
+
+        #roomid-input {
+            width: 120px;
+            height: 10px;
+            color: rgb(172, 171, 171);
+            text-align: center;
+            background-color: #242527;
+            font-size: 20px;
+            font-family: Georgia;
+            font-style: italic;
+            padding: .4em 1.6em;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            transition: all .5s linear;
+        }
+
+        #roomid-input:focus {
+            color: whitesmoke;
+            font-style: normal;
+            cursor: default;
+            font-size: 16px;
+            width: 150px;
+            height: 30px;
+            border-radius: 12px;
+        }
+
+        #join-btn {
+            background: #2a941c;
+            background-image: linear-gradient(to bottom, #2a941c, #7bb82b);
+            border-radius: 25px;
+            border-color: #242527;
+            border-style: solid;
+            border-width: 2px;
+            font-family: Georgia;
+            color: #ffffff;
+            font-size: 15px;
+            margin-left: 2vw;
+            padding: 10px 20px 10px 20px;
+            text-decoration: none;
+        }
+
+        #join-btn:hover {
+            background: #30b81b;
+            text-decoration: none;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="overlay">
+        <div id="cancel-div">
+            <label id="overlay-cancel">Cancel Download</label>
+        </div>
+        <div id="image-div">
+            <img src="../assets/icon.svg" alt="" id="image" />
+        </div>
+        <div id="text-div">
+            <label id="overlay-text"></label>
+        </div>
+        <div id="filename-div">
+            <label id="overlay-filename"></label>
+        </div>
+    </div>
+    <input type="text" id="roomid-input" placeholder="Room Name" />
+    <button id="join-btn">Join Room</button>
+    <br>
+    <div id="item-list-container">
+        <label id="info" style="display: none">Click to download a file:</label>
+        <div id="item-list" style="display: block">
+
+        </div>
+    </div>
+    <script src="./clientRenderer.js"></script>
+</body>
+
+</html>

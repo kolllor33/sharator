@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="core.css">
+    <link rel="icon" href="./icon.svg">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-1575766445363028",
+        enable_page_level_ads: true
+      });
+    </script>
+    <title>Sharator Home</title>
+</head>
+
+<body>
+    <nav>
+        <ul class="sidenav">
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a href="/faq.html">FAQ</a>
+            </li>
+            <li>
+                <a href="contact.asp">Contact</a>
+            </li>
+            <li id="download-li">
+                <a href="./Sharator-Setup.exe">Download Sharator</a>
+            </li>
+        </ul>
+    </nav>
+    <div id="overlay">
+        <div id="cancel-div">
+            <label id="overlay-cancel">Cancel Download</label>
+        </div>
+        <div id="image-div">
+            <img src="./icon.svg" alt="" id="image" />
+        </div>
+        <div id="text-div">
+            <label id="overlay-text"></label>
+        </div>
+        <div id="filename-div">
+            <label id="overlay-filename"></label>
+        </div>
+    </div>
+    <div id="root">
+        <div id="welcom-msg-div">
+            <label id="about">What is Sharator: </label>
+            <p>Sharator is a new FREE way of sharing files with others without a 3de party involved. It's very simple just select
+                a folder u want to share and press start sharing. After you pressed the button just give your room name too
+                others, so they can join your room and start downloading.</p>
+        </div>
+        <div id="room-div">
+            <input type="text" id="roomid-input" placeholder="Room Name" />
+            <button id="join-btn">Join Room</button>
+            <div id="item-list" style="display: none">
+
+            </div>
+        </div>
+    </div>
+    <script src="./core-min.js"></script>
+    <script src="./core-helpers-min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sharator WebView</title>
+  <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+
+  <style>
+    body {
+      background-color: #333538;
+    }
+
+    #itemlist {
+      margin-left: 20vw;
+      margin-top: 30px;
+    }
+
+    #title {
+      text-decoration: underline;
+      color: whitesmoke;
+      font-size: 4vw;
+      margin-left: 30vw;
+    }
+
+    #download-btn {
+      margin-left: 10vw;
+      margin-bottom: 20px;
+      border-width: 3px;
+      border-radius: 7px;
+      border-style: groove;
+      border-color: darkgreen;
+      height: 45px;
+      width: 30vw;
+      background-color: whitesmoke;
+    }
+
+    .item {
+      width: 50vw;
+      margin-bottom: 15px;
+      border-style: groove;
+      border-radius: 4px;
+      border-width: 1px;
+      border-color: whitesmoke;
+      overflow-x: auto;
+    }
+
+    .link {
+      margin-left: 15px;
+    }
+
+    a:link,
+    a:visited {
+      color: whitesmoke;
+    }
+
+    #loader {
+      margin-top: 15%;
+      animation: spin 2s linear infinite;
+    }
+
+    @-webkit-keyframes spin {
+      0% {
+        -webkit-transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .animate-bottom {
+      position: relative;
+      -webkit-animation-name: animatebottom;
+      -webkit-animation-duration: 1s;
+      animation-name: animatebottom;
+      animation-duration: 1s
+    }
+
+    @-webkit-keyframes animatebottom {
+      from {
+        bottom: -100px;
+        opacity: 0
+      }
+      to {
+        bottom: 0px;
+        opacity: 1
+      }
+    }
+
+    @keyframes animatebottom {
+      from {
+        bottom: -100px;
+        opacity: 0
+      }
+      to {
+        bottom: 0;
+        opacity: 1
+      }
+    }
+  </style>
+
+  <script>
+    window.onload = function () {
+      var loader = document.getElementById("loader");
+      if (window.innerWidth < 1230) {
+        loader.style.marginLeft = "10%";
+      } else {
+        loader.style.marginLeft = "38%";
+      }
+      loader.style.display = "block";
+    }
+  </script>
+
+</head>
+
+<body>
+  <div>
+    <label id="title" style="display:none;">Sharator Webview</label>
+  </div>
+  <div id="root" style="display:none;" class="animate-bottom"></div>
+  <div>
+    <img id="loader" src="/img" alt="Loading..." width="256px" height="256px" style="display:none;">
+  </div>
+
+  <script src="/js"></script>
+</body>
+
+</html>

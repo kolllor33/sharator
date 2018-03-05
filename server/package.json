@@ -1,0 +1,26 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kobe Bogaerts",
+  "license": "ISC",
+  "dependencies": {
+    "browserify-cipher": "^1.0.0",
+    "create-ecdh": "^4.0.0",
+    "create-hmac": "^1.1.6",
+    "express": "^4.16.2",
+    "express-rate-limit": "^2.11.0",
+    "helmet": "^3.9.0",
+    "lodash": "^4.17.4",
+    "recluster": "^0.4.5",
+    "socket.io": "^2.0.4",
+    "socket.io-stream": "^0.9.1",
+    "sticky-listen": "^3.3.0",
+    "uid": "0.0.2",
+    "ws": "^3.3.1"
+  }
+}

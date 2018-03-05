@@ -1,0 +1,77 @@
+{
+  "name": "sharator",
+  "productName": "Sharator",
+  "version": "1.0.0",
+  "description": "Document sharing program",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "eslint src --color"
+  },
+  "keywords": [],
+  "author": "Kobe Bogaerts",
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "make_targets": {
+        "win32": [
+          "squirrel"
+        ],
+        "darwin": [
+          "zip"
+        ],
+        "linux": [
+          "deb",
+          "rpm"
+        ]
+      },
+      "electronPackagerConfig": {
+        "packageManager": "npm",
+        "icon": "src/icon.ico"
+      },
+      "electronWinstallerConfig": {
+        "name": "Sharator",
+        "setupExe": "Sharator-Setup.exe",
+        "setupIcon": "src/icon.ico",
+        "authors": "Kobe Bogaerts"
+      },
+      "electronInstallerDebian": {},
+      "electronInstallerRedhat": {},
+      "github_repository": {
+        "owner": "",
+        "name": ""
+      },
+      "windowsStoreConfig": {
+        "packageName": "",
+        "name": "Sharator"
+      }
+    }
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "electron-compile": "^6.4.2",
+    "electron-squirrel-startup": "^1.0.0",
+    "express": "^4.16.2",
+    "helmet": "^3.9.0",
+    "lodash": "^4.17.4",
+    "pause-stream": "0.0.11",
+    "socket.io-client": "^2.0.4",
+    "socket.io-stream": "^0.9.1"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "electron-forge": "^4.1.2",
+    "electron-prebuilt-compile": "1.7.9",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.4.0"
+  }
+}
